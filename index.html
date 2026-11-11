@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kebra-Djundjun — O Sabor Que Nos Aproxima</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Bar: Seletor Multilíngue com Bandeiras -->
+    <header class="top-bar">
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Kebra-Djundjun Logo" class="logo-img">
+            <span class="brand-name">Kebra-Djundjun</span>
+        </div>
+        <div class="lang-selector">
+            <button onclick="changeLang('cv')" class="lang-btn">🇨🇻 Crioulo</button>
+            <button onclick="changeLang('pt')" class="lang-btn active">🇵🇹 PT</button>
+            <button onclick="changeLang('fr')" class="lang-btn">🇫🇷 FR</button>
+            <button onclick="changeLang('en')" class="lang-btn">🇬🇧 EN</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge-tag" data-i18n="heroBadge">🍪 100% Tradicional & Feito em Casa</span>
+            <h1 data-i18n="heroTitle">O Sabor Ki Ta Fazenu Arokìssima Di Noz Terra</h1>
+            <p data-i18n="heroSubtitle">As autênticas bolachas tradicionais de Santiago, feitas com amor, receita de família e ingredientes selecionados entregues na Suíça.</p>
+            
+            <!-- Selos de Confiança -->
+            <div class="trust-badges">
+                <span>🍪 <strong data-i18n="seal1">Feito em Casa</strong></span>
+                <span>🇨🇭 <strong data-i18n="seal2">Entrega na Suíça</strong></span>
+                <span>❤️ <strong data-i18n="seal3">Receita de Santiago</strong></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sistema de Venda Interativo (Calculador de Packs) -->
+    <section class="sales-system">
+        <div class="calculator-card">
+            <h2 data-i18n="calcTitle">Faça a sua Encomenda Rápida</h2>
+            <p data-i18n="calcSubtitle">Preço unitário: <strong>12 CHF</strong> por saco</p>
+
+            <!-- Seleção de Packs -->
+            <div class="packs-grid">
+                <div class="pack-option" onclick="setPack(1)">
+                    <span class="pack-name" data-i18n="pack1Name">Pack Individual</span>
+                    <span class="pack-qty">1 Saco (12 CHF)</span>
+                </div>
+                <div class="pack-option popular" onclick="setPack(3)">
+                    <span class="tag-pop" data-i18n="mostPopular">Mais Popular</span>
+                    <span class="pack-name" data-i18n="pack3Name">Pack Família</span>
+                    <span class="pack-qty">3 Sacos (36 CHF)</span>
+                </div>
+                <div class="pack-option" onclick="setPack(5)">
+                    <span class="pack-name" data-i18n="pack5Name">Pack Banquete</span>
+                    <span class="pack-qty">5 Sacos (60 CHF)</span>
+                </div>
+            </div>
+
+            <!-- Ajuste Manual de Quantidade -->
+            <div class="qty-control">
+                <label for="quantity" data-i18n="qtyLabel">Quantidade de Sacos:</label>
+                <div class="qty-input-group">
+                    <button type="button" onclick="adjustQty(-1)">-</button>
+                    <input type="number" id="quantity" value="1" min="1" max="50" oninput="updateTotal()">
+                    <button type="button" onclick="adjustQty(1)">+</button>
+                </div>
+            </div>
+
+            <!-- Resumo do Preço -->
+            <div class="price-summary">
+                <span data-i18n="totalText">Total a Pagar:</span>
+                <span id="totalPrice" class="price-highlight">12 CHF</span>
+            </div>
+
+            <!-- Campo de Morada -->
+            <div class="address-group">
+                <label for="clientAddress" data-i18n="addressLabel">Morada de Entrega na Suíça (Rua, CP, Cidade):</label>
+                <textarea id="clientAddress" placeholder="Ex: Rue de Lausanne 12, 1201 Genève" data-i18n-placeholder="addressPlaceholder"></textarea>
+            </div>
+
+            <!-- Botão WhatsApp Inteligente -->
+            <button onclick="sendWhatsAppOrder()" class="whatsapp-btn">
+                <span class="whatsapp-icon">💬</span> <span data-i18n="ctaButton">Encomendar via WhatsApp</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Galeria de Produtos / Destaques -->
+    <section class="gallery">
+        <h2 data-i18n="galleryTitle">A Nossa Tradição em Detalhes</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="img/bolacha1.png" alt="Bolacha Kebra-Djundjun"></div>
+            <div class="gallery-item"><img src="img/bolacha2.png" alt="Bolacha Kebra-Djundjun"></div>
+            <div class="gallery-item"><img src="img/bolacha3.png" alt="Bolacha Kebra-Djundjun"></div>
+            <div class="gallery-item"><img src="img/bolacha4.png" alt="Bolacha Kebra-Djundjun"></div>
+        </div>
+    </section>
+
+    <!-- Bloco Prova Social TikTok -->
+    <section class="tiktok-section">
+        <div class="tiktok-card">
+            <h3>📱 Siga o Nosso Processo no TikTok</h3>
+            <p data-i18n="tiktokDesc">Veja os vídeos dos bastidores e a nossa arte tradicional em direto de Santiago para o mundo.</p>
+            <a href="https://www.tiktok.com/@kebradjundjun8/video/7706987704839310614" target="_blank" class="tiktok-btn">
+                Ver Vídeo Oficial no TikTok ↗
+            </a>
+        </div>
+    </section>
+
+    <!-- Rodapé Legal e Termos -->
+    <footer>
+        <p>© 2026 Kebra-Djundjun. Todos os direitos reservados.</p>
+        <p><small data-i18n="footerLegal">Termos de Encomenda & Política de Privacidade simples. Pagamento combinado diretamente via WhatsApp com o produtor.</small></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
